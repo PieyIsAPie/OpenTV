@@ -26,33 +26,11 @@ namespace HTTPServer
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
 
-            if (context.Request.Url.AbsolutePath.ToString() == "/ui") 
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(getFileContents("ui.html"));
+            byte[] buffer = Encoding.UTF8.GetBytes(getFileContents("ui" + request.Url.AbsolutePath));
 
-                response.ContentType = "text/html";
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.ContentLength64 = buffer.Length;
-                response.OutputStream.Write(buffer, 0, buffer.Length);
-            }
-            if (context.Request.Url.AbsolutePath.ToString() == "/ui/apps")
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(getFileContents("ui-apps.html"));
-
-                response.ContentType = "text/html";
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.ContentLength64 = buffer.Length;
-                response.OutputStream.Write(buffer, 0, buffer.Length);
-            }
-            if (context.Request.Url.AbsolutePath.ToString() == "/ui/sidebar")
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(getFileContents("ui-sidebar.html"));
-
-                response.ContentType = "text/html";
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.ContentLength64 = buffer.Length;
-                response.OutputStream.Write(buffer, 0, buffer.Length);
-            }
+            response.StatusCode = (int)HttpStatusCode.NotFound;
+            response.ContentLength64 = buffer.Length;
+            response.OutputStream.Write(buffer, 0, buffer.Length);
             response.OutputStream.Close();
         }
     }

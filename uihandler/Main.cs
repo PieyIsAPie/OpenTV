@@ -30,7 +30,7 @@ namespace uihandler
             // Initialize cef with the provided settings
             Cef.Initialize(settings);
             // Create a browser component
-            chromeBrowser = new ChromiumWebBrowser("http://localhost:8080/ui");
+            chromeBrowser = new ChromiumWebBrowser("http://localhost:8080/ui.html");
             // Add it to the form and fill it to the form window.
             this.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;
